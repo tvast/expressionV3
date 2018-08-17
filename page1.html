@@ -10,7 +10,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body>
+<body onload="initValue()">
   <!-- <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
       <ul class="right hide-on-med-and-down">
@@ -158,7 +158,7 @@
       <div class="row">
     <div class="input-field col s6">
       
-      <H4 class="white-text">Etre sage comme une image</H4>
+      <H4  id="start" class="white-text">Etre sage comme une image</H4>
     </div>
     <div class="input-field col s6">
 
@@ -168,7 +168,12 @@
 
       <div class="container center input-field col s12">
       <a id="triggerAnswer" class="waves-effect waves-light btn-large">Vérifier</a>
+      <a onclick="myFunction()" id="trigger" class="button ">suivant</a>
+
       <H4 class="white-text" id="reponseOut"></H4>
+      <h2 id="traduce" class="subtitle">
+                      
+                    </h2>
     </div>
 
   </div>
@@ -194,18 +199,61 @@
   <script src="js/init.js"></script>
 
   <script type="text/javascript">
+    var saveTraduce = []
+    function initValue () {
+      var quotes = 
+      [
+      {fr : "Etre sage comme une image", es :"Ser más bueno que el santo", ot:"Miguel de Cervantes"},
+      {fr:"Une histoire sans queue ni tête",es:"Una historia sin pies ni cabeza",ot:"Salvador Dali"},
+      {fr:"En un clin d’oeil",es:"En un abrir y cerrar de ojos",ot:"Pablo Picasso"},
+      {fr:"En avoir l’eau à la bouche",es:"Hacerse la boca agua",ot:"Pedro Almodóvar"},
+      {fr:"Filer à l’anglaise",es:"Irse a la francesa",ot:"Pablo Neruda"},
+      {fr:"Apprendre par coeur",es:"Saberse de memoria",ot:"Octavio Paz"},
+      {fr:"Passer une nuit blanche",es:"Pasar la noche en vela",ot:"Isabel Allende"},
+      {fr:"Aller comme un gant",es:"Encajar perfectamente",ot:"Frida Kahlo"},
+      {fr:"Etre comme un coq en pâte",es:"Tener una vida de reyes",ot:"Hemingway"},
+      {fr:"Ce n’est pas la mer à boire !",es:"No es para tanto !",ot:"Che Guevara"},
+
+      {fr : "Avoir quelqu’un dans le nez", es :"No soportar a una persona", ot:"Miguel de Cervantes"},
+      {fr:"Perdre la face",es:"Perder la cara",ot:"Salvador Dali"},
+      {fr:"Faire d’une pierre, deux coups",es:"Matar dos pájaros de un tiro",ot:"Pablo Picasso"},
+      {fr:"Avoir du cran",es:"Tener las agallas",ot:"Pedro Almodóvar"},
+      {fr:"Ne pas être sorti de l’auberge",es:"No salimos de una que nos metemos en otra",ot:"Pablo Neruda"},
+      {fr:"Apprendre par coeur",es:"Saberse de memoria",ot:"Octavio Paz"},
+      {fr:"Passer une nuit blanche",es:"Pasar la noche en vela",ot:"Isabel Allende"},
+      {fr:"Aller comme un gant",es:"Encajar perfectamente",ot:"Frida Kahlo"},
+      {fr:"Etre comme un coq en pâte",es:"Tener una vida de reyes",ot:"Hemingway"},
+      {fr:"Ce n’est pas la mer à boire !",es:"No es para tanto !",ot:"Che Guevara"},
+
+      ]
+
+      
+      
+        var x = quotes.length ;
+        var y = Math.floor((Math.random() * x) + 0);
+        document.getElementById("start").innerHTML = quotes[y].fr;
+        
+        saveTraduce.push(quotes[y].es);
+        console.log(saveTraduce)
+        // document.getElementById("othor").innerHTML = quotes2[y].ot;
+      
+    }
 
     document.getElementById("triggerAnswer").addEventListener("click", showAnswer);
 
-function showAnswer() {
-    var reponse = document.getElementById("reponseIn").value
+    function showAnswer() {
+        var reponse = document.getElementById("reponseIn").value
 
-    if (reponse == "Ser más bueno que el santo") {
-      document.getElementById("reponseOut").innerHTML ="bravo"
+        if (reponse == saveTraduce[0]) {
+          document.getElementById("reponseOut").innerHTML ="bravo"
+        }
+        else {
+          document.getElementById("reponseOut").innerHTML =saveTraduce[0]
+        }
     }
-    else {
-      document.getElementById("reponseOut").innerHTML ="Ser más bueno que el santo"
-    }
+
+    function myFunction() {
+    location.reload();
 }
 
   
